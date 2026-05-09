@@ -7,6 +7,7 @@
   <meta name="description" content="Nowoczesne strony internetowe AurexWeb – portfolio, opinie, kontakt, szybka realizacja.">
   <meta name="robots" content="index, follow">
   <title>Nowoczesne strony internetowe</title>
+  <link rel="icon" href="navbarlogo (1).png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
@@ -16,24 +17,46 @@
 
 <canvas id="bg"></canvas>
 
-<nav class="navbar glass">
-  <div class="navbar-content">
-    <span class="logo">AurexWeb</span>
-    <div class="nav-links">
-      <a href="#portfolio">Portfolio</a>
-      <a href="#opinie">Opinie</a>
-      <a href="#kontakt">Kontakt</a>
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <div class="navbar-logo-left">
+        <img src="navbarlogo (1).png" alt="AurexWeb" class="logo-icon" loading="lazy">
+      </div>
+      <div class="nav-section nav-left">
+        <a href="#home" class="nav-link">Strona główna</a>
+        <a href="#about" class="nav-link">O mnie</a>
+      </div>
+    </div>
+
+    <div class="navbar-logo-center">
+      <span class="logo-text">AurexWeb</span>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="nav-section nav-right">
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#kontakt" class="nav-link">Kontakt</a>
+      </div>
+
+      <button class="nav-btn-cta open-contact-modal" id="open-contact-modal">Zapisz się →</button>
+    </div>
+
+    <div class="hamburger">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
     </div>
   </div>
 </nav>
 
 <main>
 
-<header class="hero">
+<header class="hero" id="home">
   <div class="hero-content" style="max-width:900px; width:100%; text-align:center; background:none; box-shadow:none;">
     <h1 class="animated-gradient-text">Tworzę nowoczesne strony internetowe</h1>
     <p class="fade-in delay">Szybko, tanio i pod Twoje potrzeby 🚀</p>
-    <button id="open-contact-modal" class="btn btn-glass fade-in delay2" type="button">Napisz do mnie</button>
+    <button id="open-contact-modal" class="btn btn-glass fade-in delay2 open-contact-modal" type="button">Napisz do mnie</button>
     <div id="contact-modal" class="contact-modal">
       <div class="contact-modal-content glass">
         <button class="contact-modal-close" aria-label="Zamknij">&times;</button>
@@ -50,6 +73,12 @@
             </a>
             <a href="https://discord.com/users/944157356592353290" target="_blank" class="contact-modal-link">firekites02</a>
           </div>
+            <div class="contact-modal-row">
+              <a href="tel:+48576404298" class="contact-btn contact-phone" title="Telefon">
+                <img src="tel (1).png" alt="Telefon" loading="lazy" style="width:32px;height:32px;" />
+              </a>
+              <a href="tel:+48576404298" class="contact-modal-link">+48 576 404 298</a>
+            </div>
         </div>
       </div>
     </div>
@@ -64,7 +93,7 @@
   </div>
 </section>
 
-<section class="about glass">
+<section class="about glass" id="about">
   <div class="about-content">
     <div>
       <h2>👋 Cześć! Jestem Maksymilian</h2>
@@ -126,7 +155,7 @@
         <span>WordPress</span>
       </div>
       <div class="tech-card glass reveal">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Optymalizacja" class="tech-icon" loading="lazy">
+        <img src="logoopt (2).png" alt="Optymalizacja" class="tech-icon" loading="lazy">
         <span>Optymalizacja</span>
       </div>
     </div>
@@ -157,42 +186,26 @@
     <h2>🖼️ Portfolio</h2>
     <div class="portfolio-gallery">
       <div class="portfolio-announcement glass reveal">
-        <img src="portfolio1.png" alt="Strona firmowa" loading="lazy">
+        <img src="Portfolio.png" alt="Strona firmowa" loading="lazy" style="width: 380px; height: auto;">
         <div class="portfolio-content">
           <h3>Strona firmowa</h3>
           <p>Nowoczesna witryna dla firmy usługowej z sekcją ofert, opiniami i formularzem kontaktowym.</p>
         </div>
       </div>
       <div class="portfolio-announcement glass reveal">
-        <img src="portfolio1.png" alt="Landing page" loading="lazy">
-        <div class="portfolio-content">
-          <h3>Landing page</h3>
-          <p>Strona sprzedażowa z sekcją FAQ, referencjami i prostym panelem zamówień.</p>
-        </div>
-      </div>
-      <div class="portfolio-announcement glass reveal">
-        <img src="portfolio1.png" alt="Portfolio artysty" loading="lazy">
+        <img src="portfolio2.png" alt="Portfolio artysty" loading="lazy" style="width: 380px; height: auto;">
         <div class="portfolio-content">
           <h3>Portfolio artysty</h3>
           <p>Galeria prac, biografia, kontakt i integracja z social mediami.</p>
         </div>
       </div>
-      <div class="portfolio-announcement glass reveal">
-        <img src="portfolio1.png" alt="Sklep mini" loading="lazy">
-        <div class="portfolio-content">
-          <h3>Sklep mini</h3>
-          <p>Prosty sklep internetowy z koszykiem, płatnościami i panelem administracyjnym.</p>
-        </div>
       </div>
-    </div>
-  </div>
 
   <div class="section reviews" id="opinie">
     <h2>⭐ Opinie</h2>
     <div class="slider-opinie glass">
       <button class="slider-opinie-btn left">&#8592;</button>
       <div class="slider-opinie-content-single">
-        <!-- Opinie będą renderowane przez JS -->
       </div>
       <button class="slider-opinie-btn right">&#8594;</button>
     </div>
@@ -218,12 +231,16 @@
   <div class="section contact-section" id="kontakt">
     <h2>👉 Kontakt</h2>
     <div class="contact-form glass">
-      <a href="https://www.facebook.com/share/16TGcya7X3/" class="contact-btn contact-messenger" title="Messenger" target="_blank">
-        <img src="messenger2.png" alt="Messenger" loading="lazy" />
-      </a>
-      <a href="https://discord.com/users/944157356592353290" class="contact-btn contact-discord" title="Discord" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" loading="lazy" />
-      </a>
+        <a href="https://www.facebook.com/share/16TGcya7X3/" class="contact-btn contact-messenger" title="Messenger" target="_blank">
+          <img src="messenger2.png" alt="Messenger" loading="lazy" />
+        </a>
+        <a href="https://discord.com/users/944157356592353290" class="contact-btn contact-discord" title="Discord" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" loading="lazy" />
+        </a>
+        <a href="tel:+48576404298" class="contact-btn contact-phone" title="Telefon" id="contact-phone-copy">
+          <img src="tel (1).png" alt="Telefon" loading="lazy" style="width:32px;height:32px;" />
+          <span style="margin-left:8px; font-size:1.1em; color:#60a5fa; text-decoration:underline; vertical-align:middle;"></span>
+        </a>
     </div>
   </div>
 
@@ -244,7 +261,7 @@
 </div>
 
 <footer class="footer glass">
-  <div>© 2026 AurexWeb. Wszelkie prawa zastrzeżone.</div>
+  <div>© 2026 AurexWeb. Wszelkie prawa zastrzeżone. Design: FIREKITES DEVELOPMENT</div>
 </footer>
 
 <script src="script.js" defer></script>
