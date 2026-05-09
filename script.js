@@ -1,11 +1,39 @@
-// Modal kontaktowy
 document.addEventListener('DOMContentLoaded', function() {
-  const openBtn = document.getElementById('open-contact-modal');
+  const hamburger = document.querySelector('.hamburger');
+  const navbarMenu = document.querySelector('.navbar-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (hamburger && navbarMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navbarMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navbarMenu.classList.remove('active');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        hamburger.classList.remove('active');
+        navbarMenu.classList.remove('active');
+      }
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const openBtns = document.querySelectorAll('.open-contact-modal');
   const modal = document.getElementById('contact-modal');
   const closeBtn = modal ? modal.querySelector('.contact-modal-close') : null;
-  if (openBtn && modal && closeBtn) {
-    openBtn.addEventListener('click', () => {
-      modal.classList.add('active');
+  if (openBtns.length > 0 && modal && closeBtn) {
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.add('active');
+      });
     });
     closeBtn.addEventListener('click', () => {
       modal.classList.remove('active');
@@ -15,7 +43,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-// Fallback smooth scroll for browsers not supporting CSS scroll-behavior
+
+document.addEventListener('DOMContentLoaded', function() {
+  const phoneLink = document.getElementById('contact-phone-copy');
+  if (phoneLink) {
+    phoneLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText('+48576404298').then(() => {
+        showToast('Numer telefonu został pomyślnie skopiowany!');
+      }).catch(err => {
+        console.error('Błąd podczas kopiowania: ', err);
+        showToast('Nie udało się skopiować numeru telefonu.');
+      });
+    });
+  }
+});
+
+function showToast(message) {
+  let toast = document.querySelector('.toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
+    e.preventDefault();
+  }
+});
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -28,17 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-// Floating icons move up if footer is visible
 function adjustFloatingPosition() {
   const floating = document.querySelector('.floating');
   const footer = document.querySelector('footer');
   if (!floating || !footer) return;
   const footerRect = footer.getBoundingClientRect();
   const windowHeight = window.innerHeight;
-  // If stopka wchodzi na ekran od dołu
   if (footerRect.top < windowHeight) {
-    // Przesuń floating nad stopkę
-    const overlap = windowHeight - footerRect.top + 24; // 24px odstępu
+    const overlap = windowHeight - footerRect.top + 24;
     floating.style.bottom = overlap + 'px';
   } else {
     floating.style.bottom = '20px';
@@ -48,7 +108,6 @@ function adjustFloatingPosition() {
 window.addEventListener('scroll', adjustFloatingPosition);
 window.addEventListener('resize', adjustFloatingPosition);
 document.addEventListener('DOMContentLoaded', adjustFloatingPosition);
-// --- Slider opinii: pojedyncza opinia na całą szerokość, animacja fade/slide ---
 document.addEventListener('DOMContentLoaded', function() {
   const opinieData = [
     {
@@ -136,10 +195,9 @@ resizeCanvas();
 
 let particles = [];
 for (let i = 0; i < 80; i++) {
-  // Losowy niebieski odcień i alpha
-  const hue = 210 + Math.random() * 40; // 210-250 (niebieski)
-  const sat = 60 + Math.random() * 30; // 60-90%
-  const light = 55 + Math.random() * 25; // 55-80%
+  const hue = 210 + Math.random() * 40;
+  const sat = 60 + Math.random() * 30;
+  const light = 55 + Math.random() * 25;
   const alpha = 0.45 + Math.random() * 0.25;
   particles.push({
     x: Math.random() * canvas.width,
