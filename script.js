@@ -1,12 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.querySelector('.hamburger');
   const navbarMenu = document.querySelector('.navbar-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.navbar-menu .nav-link');
 
   if (hamburger && navbarMenu) {
-    hamburger.addEventListener('click', () => {
+    const toggleMenu = (event) => {
+      if (event) event.stopPropagation();
       hamburger.classList.toggle('active');
       navbarMenu.classList.toggle('active');
+    };
+
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleMenu(event);
+      }
+    });
+
+    navbarMenu.addEventListener('click', function (event) {
+      event.stopPropagation();
     });
 
     navLinks.forEach(link => {
@@ -16,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
+    document.addEventListener('click', () => {
+      if (navbarMenu.classList.contains('active')) {
         hamburger.classList.remove('active');
         navbarMenu.classList.remove('active');
       }
